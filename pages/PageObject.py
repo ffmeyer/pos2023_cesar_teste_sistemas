@@ -54,10 +54,5 @@ class PageObject:
     def is_page(self, url, title_text):
         return self.is_title(title_text) and self.is_url(url)
 
-
-
-
-
     def close(self):
         self.driver.quit()
-

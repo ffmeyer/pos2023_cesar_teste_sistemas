@@ -1,15 +1,17 @@
 from pages.ManagerAddCustomerPage import ManagerAddCustomerPage
+from utils.UserGenerator import User
 
 
-class Test1:
+class Test_user_creation:
 
-    def test_create_user(self, open_browser):
+    def test_user_creation(self, open_browser):
         login_p = open_browser
         login_p.click_bank_manager_btn()
         mac_p = ManagerAddCustomerPage(open_browser.driver)
         mac_p.click_bank_manager_add_customer()
-        mac_p.create_user(firstname='name1', lastname='lastName', postalcode='11111')
+        a_user = User()
+        user = a_user.generate_user()
+        mac_p.create_user(first_name=user.first_name, last_name=user.last_name, postal_code=user.postal_code)
         assert mac_p.has_message_sucessfull_new_user(), 'Erro ao criar usuario'
-        print(mac_p.get_customer_id())
-
-
+        mac_p.close_alert()
+        print('xx')
