@@ -13,7 +13,11 @@ class ManagerAddCustomerPage(PageObject):
         self.input_last_name = 'input[placeholder="Last Name"]'
         self.input_post_code = 'input[placeholder="Post Code"]'
         self.btn_submit_customer = 'button[type="submit"]'
+
+        # validacao de tela (alert)
         self.msg_validate_user_creation_successfull = 'Customer added successfully with customer id'
+
+
     def click_bank_manager_add_customer(self):
         element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.btn_add_customer, 10)
         element.click()
@@ -39,5 +43,5 @@ class ManagerAddCustomerPage(PageObject):
         self.type_postal_code(postalcode)
         self.click_submit_customer()
 
-    def get_message_sucessfull_new_user(self):
-        return self.wait_visible_alert_selected().text
+    def has_message_sucessfull_new_user(self):
+        return self.msg_validate_user_creation_successfull in self.wait_visible_alert_selected().text

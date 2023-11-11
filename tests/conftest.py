@@ -3,9 +3,6 @@ import pytest
 from pages.LoginPage import LoginPage
 
 
-
-
-
 @pytest.fixture()
 def open_browser(request):
     login_p = LoginPage(browser='chrome')
@@ -19,7 +16,3 @@ def login_saucedemo(open_browser):
     login_p = open_browser
     login_p.enter_login()
     yield login_p
-
-
-
-
