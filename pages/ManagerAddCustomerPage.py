@@ -37,11 +37,15 @@ class ManagerAddCustomerPage(PageObject):
     def click_submit_customer(self):
         self.driver.find_element(By.CSS_SELECTOR, self.btn_submit_customer).click()
 
-    def create_user(self, firstname, lastname, postalcode):
-        self.type_first_name(firstname)
-        self.type_last_name(lastname)
-        self.type_postal_code(postalcode)
+    def create_user(self, first_name, last_name, postal_code):
+        self.type_first_name(first_name)
+        self.type_last_name(last_name)
+        self.type_postal_code(postal_code)
         self.click_submit_customer()
 
     def has_message_sucessfull_new_user(self):
         yield self.msg_validate_user_creation_successfull in self.wait_visible_alert_selected().text
+
+    def close_alert(self):
+        alert = self.wait_visible_alert_selected()
+        alert.accept()
