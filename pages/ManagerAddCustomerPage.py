@@ -44,4 +44,4 @@ class ManagerAddCustomerPage(PageObject):
         self.click_submit_customer()
 
     def has_message_sucessfull_new_user(self):
-        return self.msg_validate_user_creation_successfull in self.wait_visible_alert_selected().text
+        yield self.msg_validate_user_creation_successfull in self.wait_visible_alert_selected().text
