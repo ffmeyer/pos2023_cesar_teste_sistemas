@@ -1,3 +1,4 @@
+import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -7,7 +8,7 @@ from pages.PageObject import PageObject
 class ManagerCustomersPage(PageObject):
 
     def __init__(self, browser):
-        self.super(ManagerCustomersPage, self).__init__(browser=browser)
+        super(ManagerCustomersPage, self).__init__(driver=browser)
         self.input_search_customer = 'input[placeholder="Search Customer"]'
         self.tbl_firstname = 'input[placeholder="First Name"]'
         self.tbl_lastname = 'input[placeholder="Last Name"]'
