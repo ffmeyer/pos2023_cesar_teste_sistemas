@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 from pages.PageObject import PageObject
+from selenium.webdriver.support.ui import Select
 
 
 class CustomerLoginPage(PageObject):

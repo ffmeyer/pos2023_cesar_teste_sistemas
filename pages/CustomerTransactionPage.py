@@ -7,9 +7,9 @@ from pages.PageObject import PageObject
 class CustomerTransactionPage(PageObject):
 
     def __init__(self, browser):
-        self.super(CustomerTransactionPage, self).__init__(browser=browser)
-        self.btn_back = '.btn[ng-click="back()"]'
-        self.btn_reset = '.btn[ng-show="showDate"]'
-        self.tbl_amount = ''
-        self.tbl_transaction_type = ''
+        super(CustomerTransactionPage, self).__init__(driver=browser)
+        self.css_btn_back = '.btn[ng-click="back()"]'
+        self.css_btn_reset = '.btn[ng-show="showDate"]'
+        self.css_tbl_amount = ''
+        self.css_tbl_transaction_type = ''
         

@@ -51,6 +51,12 @@ class ManagerOpenAccountPage(PageObject):
     def create_new_account_in_rupee(self, username):
         return self.create_new_account(username=username, currency=self.CURRENCY_RUPEE)
 
-
     def has_message_sucessfull_association(self):
         return self.msg_validate_user_association_successfull in self.wait_visible_alert_selected().text
+
+    def get_account_number(self):
+        return self.wait_visible_alert_selected().text.split(':')[1]
+
+    def close_alert(self):
+        alert = self.wait_visible_alert_selected()
+        alert.accept()
