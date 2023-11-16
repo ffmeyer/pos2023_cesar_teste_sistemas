@@ -1,9 +1,12 @@
 import pytest
 
+from pages.CustomerLoginPage import CustomerLoginPage
 from pages.HeaderPage import HeaderPage
 from pages.LoginPage import LoginPage
 from pages.ManagerAddCustomerPage import ManagerAddCustomerPage
+from pages.ManagerOpenAccountPage import ManagerOpenAccountPage
 from utils.UserGenerator import User
+
 
 
 @pytest.fixture()
@@ -31,9 +34,28 @@ def create_user(open_browser):
 
 
 @pytest.fixture()
-def select_random_user(open_browser):
-    pass
+def create_user_account_association(create_user):
+    login_p, user = create_user
+    login_p.click_bank_manager_btn()
+    moap_p = ManagerOpenAccountPage(login_p.driver)
+    header_p = HeaderPage(login_p.driver)
+    moap_p.click_bank_manager_open_account()
+    moap_p.create_new_account_in_dollar(user.full_name)
+    account_id = moap_p.get_account_number()
+    moap_p.close_alert()
+    header_p.click_home_btn()
+    yield login_p, user, account_id
 
+
+@pytest.fixture()
+def select_random_user(open_browser):
+    login_p = open_browser
+    login_p.click_customer_btn()
+    clp_p = CustomerLoginPage(login_p.driver)
+    header_p = HeaderPage(login_p.driver)
+    full_name = clp_p.select_random_available_user()
+    header_p.click_home_btn()
+    yield login_p, full_name
 
 @pytest.fixture()
 def create_user_500_dollars(open_browser):
