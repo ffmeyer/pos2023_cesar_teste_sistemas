@@ -1,3 +1,5 @@
+import random
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -10,7 +12,7 @@ class CustomerLoginPage(PageObject):
 
     def __init__(self, driver):
         super(CustomerLoginPage, self).__init__(driver=driver)
-        self.select_user = 'userSelect'
+        self.css_select_customer = '#userSelect'
         self.btn_login = 'button[type="submit"]'
         self.btn_logout = '.btn.logout'
 
@@ -28,3 +30,14 @@ class CustomerLoginPage(PageObject):
 
     def is_url_login(self):
         return self.is_url(self.url)
+
+    def select_user_account(self, username):
+        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.select_user, 10)
+        combobox = Select(element)
+        combobox.select_by_visible_text(username)
+
+    def select_random_available_user(self):
+        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.css_select_customer, 10)
+        combobox = Select(element)
+        index = random.randint(1, len(combobox.options))
+        return combobox.options[index].text
