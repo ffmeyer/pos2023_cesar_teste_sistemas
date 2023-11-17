@@ -43,3 +43,7 @@ class ManagerCustomersPage(PageObject):
 
     def has_delete_button_displayed(self):
         return self.wait_visible_element(By.CSS_SELECTOR, self.xpath_td_selected_delete_button, 10)
+
+    def delete_user(self):
+        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.xpath_td_selected_delete_button, 10)
+        element.click()
