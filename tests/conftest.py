@@ -1,5 +1,6 @@
 import pytest
 
+from pages.CustomerAccountPage import CustomerAccountPage
 from pages.CustomerLoginPage import CustomerLoginPage
 from pages.HeaderPage import HeaderPage
 from pages.LoginPage import LoginPage
@@ -56,6 +57,16 @@ def select_random_user(open_browser):
     full_name = clp_p.select_random_available_user()
     header_p.click_home_btn()
     yield login_p, full_name
+
+@pytest.fixture()
+def login_harry(open_browser):
+    login_p = open_browser
+    login_p.click_customer_btn()
+    clp_p = CustomerLoginPage(login_p.driver)
+    clp_p.login_user('Harry Potter')
+
+    yield login_p
+
 
 @pytest.fixture()
 def create_user_500_dollars(open_browser):

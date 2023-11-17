@@ -16,8 +16,8 @@ class CustomerLoginPage(PageObject):
         self.btn_login = 'button[type="submit"]'
         self.btn_logout = '.btn.logout'
 
-    def select_user_name(self, username):
-        element = self.wait_visible_element_selected(By.ID, self.select_user, 10)
+    def login_user(self, username):
+        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.css_select_customer, 10)
         combobox = Select(element)
         combobox.select_by_visible_text(username)
         self.click_login_btn()
@@ -32,7 +32,7 @@ class CustomerLoginPage(PageObject):
         return self.is_url(self.url)
 
     def select_user_account(self, username):
-        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.select_user, 10)
+        element = self.wait_visible_element_selected(By.CSS_SELECTOR, self.css_select_customer, 10)
         combobox = Select(element)
         combobox.select_by_visible_text(username)
 
