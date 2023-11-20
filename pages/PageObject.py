@@ -39,7 +39,7 @@ class PageObject:
             return False
         return element
 
-    def wait_visible_elements_selected(self, by,value, timeout):
+    def wait_visible_elements_selected(self, by, value, timeout):
         try:
             element = WebDriverWait(self.driver, timeout).until(
                 expected_conditions.visibility_of_all_elements_located((by, value)))
